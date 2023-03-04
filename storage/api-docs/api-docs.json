@@ -1,0 +1,93 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "6B Healthcare API",
+        "description": "A healthcare API to interact with EHRs",
+        "contact": {
+            "email": "thomas@6bdigtial.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://healthcare-api.localtest.me/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/emis/pfs/patientRecord/{AccessIdentityGuid}/{NationalPracticeCode}": {
+            "get": {
+                "tags": [
+                    "Medical Record"
+                ],
+                "summary": "Return a patients medical record",
+                "description": "Get/Patients medical record",
+                "operationId": "patientRecord",
+                "parameters": [
+                    {
+                        "name": "AccessIdentityGuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "nullable": false
+                        }
+                    },
+                    {
+                        "name": "NationalPracticeCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "nullable": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns a patients medical record"
+                    }
+                }
+            }
+        },
+        "/emis/pfs/patientAppointments/{AccessIdentityGuid}/{NationalPracticeCode}": {
+            "get": {
+                "tags": [
+                    "Appointments"
+                ],
+                "summary": "Return a patients appointments",
+                "description": "Get/Patients appointments",
+                "operationId": "patientAppointments",
+                "parameters": [
+                    {
+                        "name": "AccessIdentityGuid",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "nullable": false
+                        }
+                    },
+                    {
+                        "name": "NationalPracticeCode",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "nullable": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns appointments for a patient, which can be filtered by future/previous appointments"
+                    }
+                }
+            }
+        }
+    }
+}
