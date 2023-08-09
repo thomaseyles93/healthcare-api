@@ -22,3 +22,14 @@ use Illuminate\Support\Facades\Route;
 //Patient Facing API
 Route::get('/emis/pfs/patientRecord/{AccessIdentityGuid}/{NationalPracticeCode}', [\App\Http\Controllers\EmisPfsController::class, 'patientRecord']);
 Route::get('/emis/pfs/patientAppointments/{AccessIdentityGuid}/{NationalPracticeCode}', [\App\Http\Controllers\EmisPfsController::class, 'patientAppointments']);
+
+
+/*
+|--------------------------------------------------------------------------
+| Personal Demographic Service API (PDS)
+|--------------------------------------------------------------------------
+*/
+//Patient Facing API
+Route::get('/pds/', [\App\Http\Controllers\PdsController::class, 'patient']);
+
+

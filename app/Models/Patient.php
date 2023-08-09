@@ -74,7 +74,7 @@ class Patient extends Model
         $client = new \GuzzleHttp\Client();
         $res = $client->request(
             'GET',
-            url(env('EMIS_PFS_URL').'/pfs/record?UserPatientLinkToken='.$userPatientLinkToken),
+            url(env('EMIS_PFS_URL').'/pfs/record?UserPatientLinkToken='.$userPatientLinkToken.'&ItemType=Medication&FilterFromDate=2023-03-07&FilterToDate=2023-03-07'),
             [
                 'headers' => [
                     'Accept'     => 'application/json',
@@ -82,16 +82,20 @@ class Patient extends Model
                     'X-API-ApplicationId' => env('EMIS_PFS_APP_ID'),
                     'X-API-EndUserSessionId' => $endUserSession,
                     'X-API-SessionId' => $sessionId,
-                    'ItemType' => $itemType,
-                    'FilterFromDate' => $filterFromDate,
-                    'FilterToDate' => $filterToDate,
+                    'ItemType' => 'Documents',
+                    'FilterFromDate' => '2023-03-07T00:00:00.001Z',
+                    'FilterToDate' => '2023-03-07T23:59:59.591Z',
                 ],
 
             ]
         );
 
         //Decode the returned body content into JSON
-        $sessionId = json_decode($res->getBody());
+//        $sessionId = json_decode($res->getBody());
+        $sessionId = $res->getBody();
+//        echo '<pre>';
+//        print_r(json_decode($res->getBody()));
+//        echo '</pre>';
 
         //Check reponse and link if not linked
 
